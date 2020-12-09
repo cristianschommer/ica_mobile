@@ -1,0 +1,3 @@
+Enviar arquivos para repositorio GIT:
+> git add --all && git commit -m "Primeiro Comitt"
+> git push origin master
