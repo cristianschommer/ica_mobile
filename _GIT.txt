@@ -1,3 +1,6 @@
 Enviar arquivos para repositorio GIT:
-> git add --all && git commit -m "Primeiro Comitt"
+> git add --all && git commit -m "Tela de Veiculos"
 > git push origin master
+
+git push -u origin main
+git commit -m "Tela de veiculos"

@@ -2,7 +2,7 @@ import {StyleSheet, Dimensions} from 'react-native';
 
 //48887B
 const width_total = Dimensions.get('window').width;
-const cor_padrao_ica = "#48887B";
+export const cor_padrao_ica = "#48887B";
 
 const StiloLogin = StyleSheet.create({
     container: {
@@ -20,7 +20,7 @@ const StiloLogin = StyleSheet.create({
         borderRadius:150, 
         borderColor: "#fff", 
         borderWidth:2,
-        marginTop: 50,
+        marginTop: 13,
     },
     view_imagem: {
         padding: 30,

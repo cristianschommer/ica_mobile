@@ -4,7 +4,7 @@
     "slug": "ica-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo_ica.png",
+    "icon": "./assets/teste.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

@@ -2,6 +2,10 @@ import React, {useState,useEffect} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import { KeyboardAvoidingView, Alert, TouchableOpacity, Text, View, Image, SafeAreaView, ScrollView, TextInput } from 'react-native';
 import StiloLogin from './Css';
+import {
+    url_request,
+    mensagem_erro_request
+} from '../../App';
 
 const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0
 
@@ -9,10 +13,8 @@ const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0
 
 const Login = ({ navigation })  => {
     
-        //Alert.alert("OI");
-        //() => {navigation.navigate('Veiculo')}}
     const [veiculo, setVeiculo]=useState('');
-    const [senha, setSenha]=useState('');  
+    const [senha, setSenha]=useState(''); 
 
     useEffect(()=>{
         async function getUltimoVeiculo()
@@ -52,19 +54,28 @@ const Login = ({ navigation })  => {
             };
 
             _salva_ultimo_veiculo();
-            navigation.navigate('Veiculo');
+
+            let url = url_request + '/veiculo/api/login_mobile?';
+            url += 'placa=' + veiculo;
+            url += '&senha=' + senha; 
+            fetch(url, {
+             method: 'GET'
+            })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                if (responseJson['status'] === "OK") {   
+                    navigation.navigate('Veiculo', {'placa': veiculo, 'modelo': responseJson['modelo'], 'ano': responseJson['ano']});
+                }
+                else 
+                    Alert.alert(responseJson['mensagem']);
+                //console.log(responseJson);        
+            })
+            .catch((error) => {
+                Alert.alert(mensagem_erro_request);
+            });   
+
+            //
         }
-        /*fetch('https://jsonplaceholder.typicode.com/posts/1', {
-         method: 'GET'
-        })
-        .then((response) => response.json())
-        .then((responseJson) => {
-            Alert.alert(responseJson['title']);
-            
-        })
-        .catch((error) => {
-            console.error(error);
-        });   */
                      
     } 
     return (
@@ -72,7 +83,7 @@ const Login = ({ navigation })  => {
             <ScrollView style={StiloLogin.scrool} showsVerticalScrollIndicator={false}>
                     <View style={StiloLogin.view_imagem}>
                         <Image 
-                            source={require('../assets/logo_ica.png')} 
+                            source={require('../../assets/logo_ica.png')} 
                             style={StiloLogin.logo_ica_login} />
                     </View>
                     <View>
@@ -80,7 +91,7 @@ const Login = ({ navigation })  => {
                             <View style={StiloLogin.view_login}>
                                 <Image 
                                     style={StiloLogin.imagem_input}
-                                    source={require('../assets/login_carro.png')} 
+                                    source={require('../../assets/login_carro.png')} 
                                 />
                                 <TextInput 
                                     autoCapitalize="characters" 
@@ -93,7 +104,7 @@ const Login = ({ navigation })  => {
                             <View style={StiloLogin.view_login}>
                                 <Image 
                                     style={StiloLogin.imagem_input}
-                                    source={require('../assets/login_cadeado.png')} 
+                                    source={require('../../assets/login_cadeado.png')} 
                                 />
                                 <TextInput 
                                     placeholder="Senha" 
