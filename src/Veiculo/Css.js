@@ -12,29 +12,55 @@ const StiloVeiculo = StyleSheet.create({
     scrool: {
         //marginHorizontal: 30
     },
+    view_veiculo: {
+        paddingTop: 25,
+    },
     view_grupo: {
         height: 100,
-        margin: 10,
-        //backgroundColor: "#d10d27",
+        margin: 20,
+        width: "40%",
         borderRadius: 10,
-        //alignItems: "center",
-        flex: 1,
-        justifyContent: "center"
+        alignItems: "center",
+        justifyContent: "center",
+        borderColor: "#fff",
+        borderWidth: 2,
+        borderRadius: 10
     },
     imagem_grupo: {
-        width: 70,
-        height: 70,
+        width: 50,
+        height: 50,
         alignSelf: "center",
-        marginLeft: 10,
+        //marginLeft: 10,
         //backgroundColor: "red"
     },
     texto_grupo: {
-        fontSize: 24,
+        marginTop: 7,
+        //fontSize: 14,
         color: "#fff",
-        textAlign: "center",
+        //fontWeight: 'bold',
+        //textAlign: "left",
         //alignSelf: "center",
         //marginLeft: 20
+    },
+    view_rodape: {
+        justifyContent: 'flex-end',
+        height: 60,
+        borderTopColor: "#fff",
+        //borderTopWidth: 1
+        
+    },
+    view_botoes_rodape: {
+        flexDirection: "row", 
+        flex: 1,
+        marginHorizontal: 10,
+        alignItems: "center"
+    },
+    imagem_rodape: {
+        height: 35,
+        width: 35,
     }
+    
+
   });
 
   export default StiloVeiculo;

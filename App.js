@@ -3,11 +3,12 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import Login from './src/Login/Login';
 import Veiculo from './src/Veiculo/Veiculo';
+import Produtos from './src/Produto/Produtos';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
+import { cor_padrao_ica } from './src/Login/Css';
 export const url_request = 'http://192.168.100.56:8080';
-export const mensagem_erro_request = 'Ocorreu um erro de conexão.\n\nTente novamente mais tarde.';
+export const mensagem_erro_request = 'Ocorreu um erro de conexão.';
 
 
 export default function App() {
@@ -15,7 +16,7 @@ export default function App() {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
-      <StatusBar backgroundColor="#48887B"/>
+      <StatusBar style="light" backgroundColor={cor_padrao_ica}/>
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
@@ -40,11 +41,22 @@ export default function App() {
           name="Veiculo" 
           component={Veiculo}
           options={({route}) => ({
-            //headerShown: false
+            //headerShown: false,
             //headerLeft: null,
-            //gesturesEnabled: false,
-            headerTitle: route.params.placa,
+            gesturesEnabled: false,
+            headerTitle: route.params.placa + " - " + route.params.modelo,
           })}       
+        />
+        <Stack.Screen 
+          name="Produtos" 
+          component={Produtos}
+          options={({route}) => ({
+            //headerShown: false,
+            //headerLeft: null,
+            
+            gesturesEnabled: false,
+            headerTitle: route.params.grupo
+          })}      
         />
       </Stack.Navigator>
   </NavigationContainer>

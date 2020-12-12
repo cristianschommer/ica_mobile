@@ -9,7 +9,8 @@ const StiloLogin = StyleSheet.create({
       flex: 1,
       backgroundColor: cor_padrao_ica,
       //alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
+      alignItems: "center"
     },
     scrool: {
         //marginHorizontal: 30
@@ -20,7 +21,7 @@ const StiloLogin = StyleSheet.create({
         borderRadius:150, 
         borderColor: "#fff", 
         borderWidth:2,
-        marginTop: 13,
+        //marginTop: 13,
     },
     view_imagem: {
         padding: 30,
@@ -35,9 +36,9 @@ const StiloLogin = StyleSheet.create({
         borderBottomWidth: 1
     },
     text: {
-        color: "#fff",
+        color: cor_padrao_ica,
         fontSize: 16,
-        marginHorizontal: 20,
+        marginHorizontal: 0,
         //padding: 20
     },
     imagem_input: {
