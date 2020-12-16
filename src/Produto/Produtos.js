@@ -3,7 +3,7 @@ import {useState,useEffect} from 'react';
 import { 
     RefreshControl, 
     Button, 
-    Alert,
+    StatusBar,
     Text, 
     View, 
     Image, 
@@ -11,22 +11,26 @@ import {
     TouchableOpacity, 
     FlatList
 } from 'react-native';
-import {url_request,mensagem_erro_request} from '../../App';
+import { ViewTopo } from '../Index/Index';
+import StiloProdutos from './Styles';
+import { FontAwesome } from '@expo/vector-icons';
 import { cor_padrao_ica } from '../Login/Css';
-import StiloVeiculo from '../Veiculo/Css';
-import StiloProdutos from './Css';
 
 
-const Produtos = ({ route })  => {
-
+const Produtos = ({ route, navigation })  => {
     return (
-        <View style={StiloVeiculo.container}>
-            <Text
-                style={{textAlign: "center", color: "white", fontSize: 20, fontWeight: "bold"}}
-            >
-                EM DESENVOLVIMENTO
-            </Text>
-        </View>
+        <SafeAreaView style={StiloProdutos.container}>
+            <StatusBar backgroundColor={cor_padrao_ica}></StatusBar>
+
+            <ViewTopo dados_veiculo={route.params}/>
+            
+            <Text style={StiloProdutos.text_grupo}>{route.params.grupo_nome}</Text>
+
+            {/* <View style={{width: "100%", height: 0.5, opacity: 0.5, backgroundColor: "#fff"}}/> */}
+            <FlatList>
+                
+            </FlatList>
+        </SafeAreaView>
     ) 
 };
   

@@ -10,21 +10,19 @@ import {
     SafeAreaView, 
     ScrollView, 
     TextInput,
-    Switch
+    Switch,
+    StatusBar
 } from 'react-native';
 import {Platform} from 'react-native';
-
+import {expo} from '../../app.json';
+import { encode } from 'base-64';
 import StiloLogin, { cor_padrao_ica } from './Css';
 import {
     url_request,
     mensagem_erro_request
 } from '../../App';
 import { TextInputMask } from 'react-native-masked-text';
-import StiloVeiculo from '../Veiculo/Css';
-
-
-const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0
-
+import {keyboardVerticalOffset} from '../Library/Library';
 
 
 const Login = ({ navigation })  => {
@@ -96,20 +94,24 @@ const Login = ({ navigation })  => {
 
             _salva_ultimo_veiculo();
 
-            let url = url_request + '/veiculo/api/login_mobile?';
-            url += 'placa=' + veiculo;
-            url += '&senha=' + senha; 
+            let url = url_request + '/veiculo/api/login_mobile/';
             fetch(url, {
-             method: 'GET'
+             method: 'GET',
+             headers: new Headers({
+                'Authorization': 'Basic ' + encode(veiculo + ":" + senha),
+                'Content-Type': 'application/json'
+              }),
             })
             .then((response) => response.json())
             .then((responseJson) => {
                 if (responseJson['status'] === "OK") {   
-                    navigation.navigate('Veiculo',  {
+                    navigation.navigate('Index',  {
                         'placa': veiculo, 
                         'senha': senha,
                         'modelo': responseJson['modelo'], 
-                        'ano': responseJson['ano']});
+                        'ano': responseJson['ano'],
+                        'km': responseJson['km'],
+                        'marca': responseJson['marca']},);
                 }
                 else 
                     Alert.alert(responseJson['mensagem']);
@@ -126,6 +128,7 @@ const Login = ({ navigation })  => {
     return (
         <SafeAreaView style={StiloLogin.container}>
             <ScrollView style={StiloLogin.scrool} showsVerticalScrollIndicator={false}>
+                <StatusBar backgroundColor={cor_padrao_ica} />
                 <View style={StiloLogin.view_imagem}>
                     <Image 
                         source={require('../../assets/logo_ica.png')} 
@@ -141,7 +144,7 @@ const Login = ({ navigation })  => {
                             />
                             <TextInputMask 
                                 autoCapitalize="characters" 
-                                placeholder="Veículo" 
+                                placeholder="Placa" 
                                 style={StiloLogin.input}
                                 defaultValue={veiculo}
                                 onChangeText={text => setVeiculo(text.toUpperCase())}
@@ -191,6 +194,9 @@ const Login = ({ navigation })  => {
                                 <Text style={StiloLogin.text_botao_entrar}>ENTRAR</Text>
                             </TouchableOpacity>
                         </View>  
+                        <View>
+                            <Text style={StiloLogin.text_botao_entrar}>{expo.version}</Text>
+                        </View>
                     </KeyboardAvoidingView>
                 </View> 
             </ScrollView>

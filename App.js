@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import Login from './src/Login/Login';
 import Veiculo from './src/Veiculo/Veiculo';
 import Produtos from './src/Produto/Produtos';
+import Index from './src/Index/Index';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { cor_padrao_ica } from './src/Login/Css';
@@ -20,7 +21,7 @@ export default function App() {
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#48887B',
+            backgroundColor: cor_padrao_ica,
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -38,25 +39,14 @@ export default function App() {
           }}        
         />
         <Stack.Screen 
-          name="Veiculo" 
-          component={Veiculo}
+          name="Index" 
+          component={Index}
           options={({route}) => ({
-            //headerShown: false,
-            //headerLeft: null,
+            headerShown: false,
+            headerLeft: null,
             gesturesEnabled: false,
             headerTitle: route.params.placa + " - " + route.params.modelo,
           })}       
-        />
-        <Stack.Screen 
-          name="Produtos" 
-          component={Produtos}
-          options={({route}) => ({
-            //headerShown: false,
-            //headerLeft: null,
-            
-            gesturesEnabled: false,
-            headerTitle: route.params.grupo
-          })}      
         />
       </Stack.Navigator>
   </NavigationContainer>

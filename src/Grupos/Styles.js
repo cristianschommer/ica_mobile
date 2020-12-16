@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 import { cor_padrao_ica } from '../Login/Css';
 
 
-const StiloVeiculo = StyleSheet.create({
+const StiloGrupos = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: cor_padrao_ica,
@@ -16,8 +16,11 @@ const StiloVeiculo = StyleSheet.create({
         paddingTop: 25,
     },
     view_grupo: {
+        flex: 1,
         height: 100,
-        margin: 20,
+        marginHorizontal: 15,
+        marginVertical: 20,
+        //marginLeft: 20,
         width: "40%",
         borderRadius: 10,
         alignItems: "center",
@@ -35,9 +38,9 @@ const StiloVeiculo = StyleSheet.create({
     },
     texto_grupo: {
         marginTop: 7,
-        //fontSize: 14,
+        fontSize: 10,
         color: "#fff",
-        //fontWeight: 'bold',
+        fontWeight: 'bold',
         //textAlign: "left",
         //alignSelf: "center",
         //marginLeft: 20
@@ -63,4 +66,4 @@ const StiloVeiculo = StyleSheet.create({
 
   });
 
-  export default StiloVeiculo;
+  export default StiloGrupos;
