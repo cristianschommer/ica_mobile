@@ -13,11 +13,13 @@ import {
 } from 'react-native';
 import StiloGrupos from './Styles';
 import Produtos from '../Produto/Produtos';
-import {url_request,mensagem_erro_request} from '../../App';
+import {url_request,mensagem_erro_request} from '../Library/Library';
 import StiloLogin, { cor_padrao_ica } from '../Login/Css';
 import {ViewTopo} from '../Index/Index';
 import { get } from 'react-native/Libraries/Utilities/PixelRatio';
 import { encode } from 'base-64';
+import { _informa_erro } from '../Library/Library';
+import { FontAwesome } from '@expo/vector-icons';
 
 
 const Grupos = ({ route, navigation })  => {
@@ -25,7 +27,7 @@ const Grupos = ({ route, navigation })  => {
         <TouchableOpacity 
             style={[StiloGrupos.view_grupo, {backgroundColor: json_produto.cor}]}
             onPress={()=>{                 
-                navigation.navigate('Produtos', {'grupo_nome': json_produto.nome}) 
+                navigation.navigate('Produtos', {'grupo_nome': json_produto.nome, 'produtos': produtos}) 
             }}
         >
             <Image
@@ -46,6 +48,8 @@ const Grupos = ({ route, navigation })  => {
     function get_informacao_veiculo() {
         let url = url_request + '/revisao/api/lista_revisao/';
 
+        setShowProgress(true);
+
         fetch(url, {
          method: 'GET',
          headers: new Headers({
@@ -63,7 +67,7 @@ const Grupos = ({ route, navigation })  => {
         .catch((error) => {
             setShowProgress(false);
             
-            Alert.alert(mensagem_erro_request);
+            _informa_erro(mensagem_erro_request);
             //setGrupos([]);
             //setProdutos([]);
         }); 
@@ -99,6 +103,12 @@ const Grupos = ({ route, navigation })  => {
                      />
                 }
             />
+
+            <View style={StiloGrupos.view_atualizar}>
+                <TouchableOpacity onPress={() => {get_informacao_veiculo();}}>
+                     <FontAwesome name="refresh" size={30} color={cor_padrao_ica} />
+                </TouchableOpacity>
+            </View>
 
         </SafeAreaView>
     ) 

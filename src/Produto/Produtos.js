@@ -26,7 +26,13 @@ const Produtos = ({ route, navigation })  => {
             
             <Text style={StiloProdutos.text_grupo}>{route.params.grupo_nome}</Text>
 
-            {/* <View style={{width: "100%", height: 0.5, opacity: 0.5, backgroundColor: "#fff"}}/> */}
+            <TouchableOpacity style={{alignItems: "center", marginVertical: 20}}>
+                <Text 
+                    style={{color: "#fff", fontSize: 20}}
+                    onPress={() => {navigation.goBack();}}
+                >VOLTAR</Text>
+            </TouchableOpacity>
+
             <FlatList>
                 
             </FlatList>

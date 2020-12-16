@@ -61,8 +61,19 @@ const StiloGrupos = StyleSheet.create({
     imagem_rodape: {
         height: 35,
         width: 35,
-    }
-    
+    },
+    view_atualizar: {
+        //flex: 1, 
+        marginBottom: 10,
+        //justifyContent: 'flex-end',
+        alignSelf: "center",
+        alignItems: "center", 
+        justifyContent: "center",
+        borderRadius: 50,
+        backgroundColor: "#fff",
+        height: 40,
+        width: 40
+    },
 
   });
 

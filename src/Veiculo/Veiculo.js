@@ -16,7 +16,11 @@ import {
     Alert
 } from 'react-native';
 import StiloVeiculo from './Styles';
-import {url_request,mensagem_erro_request} from '../../App';
+import {
+    url_request,
+    mensagem_erro_request,
+    _informa
+} from '../Library/Library';
 import StiloLogin, { cor_padrao_ica } from '../Login/Css';
 import Progress from '../Progress/Progress';
 import { get } from 'react-native/Libraries/Utilities/PixelRatio';
@@ -51,9 +55,10 @@ const VeiculoKM = ({ route, navigation })  => {
                             value={nova_km}
                             onKeyPress={text => SetNovaKM(text)}
                         />
+                           
                     </View>
                     <View style={StiloVeiculo.view_salvar_km}>
-                        <TouchableOpacity onPress={()=>{Alert.alert("Em desenvolvimento.")}}>
+                        <TouchableOpacity onPress={()=>{_informa("Em desenvolvimento.")}}>
                             <Text style={StiloVeiculo.text_km}>Salvar</Text>
                         </TouchableOpacity>
                     </View>  

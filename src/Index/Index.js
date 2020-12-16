@@ -56,14 +56,14 @@ const Index = ({ route, navigation })  => {
                             component={Grupos} 
                             initialParams={route.params}
                         />  
-                        {/* <Tab.Screen
+                        <Tab.Screen
                             name="Produtos" 
                             component={Produtos} 
                             initialParams={route}
                             options={{
                                 tabBarVisible: false,
                               }}
-                        />  */}
+                        /> 
                         <Tab.Screen
                             name="VeiculoKM" 
                             component={VeiculoKM} 

@@ -8,8 +8,6 @@ import Index from './src/Index/Index';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { cor_padrao_ica } from './src/Login/Css';
-export const url_request = 'http://192.168.100.56:8080';
-export const mensagem_erro_request = 'Ocorreu um erro de conexão.';
 
 
 export default function App() {

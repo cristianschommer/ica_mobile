@@ -20,10 +20,10 @@ import StiloLogin, { cor_padrao_ica } from './Css';
 import {
     url_request,
     mensagem_erro_request
-} from '../../App';
+} from '../Library/Library';
 import { TextInputMask } from 'react-native-masked-text';
 import {keyboardVerticalOffset} from '../Library/Library';
-
+import { _informa, _informa_erro } from '../Library/Library';
 
 const Login = ({ navigation })  => {
     
@@ -60,10 +60,10 @@ const Login = ({ navigation })  => {
 
     function Entrar() {
         if (! veiculo) {
-             Alert.alert("Informe o veículo.");
+             _informa("Informe o veículo.");
         }
         else if (! senha) {
-            Alert.alert("Informe a senha.");
+            _informa("Informe a senha.");
         }
         else {
 
@@ -114,11 +114,11 @@ const Login = ({ navigation })  => {
                         'marca': responseJson['marca']},);
                 }
                 else 
-                    Alert.alert(responseJson['mensagem']);
-                //console.log(responseJson);        
+                    _informa(responseJson['mensagem']);
             })
             .catch((error) => {
-                Alert.alert(mensagem_erro_request);
+                //Alert.alert(mensagem_erro_request);
+                _informa_erro(mensagem_erro_request)
             });   
 
             //
